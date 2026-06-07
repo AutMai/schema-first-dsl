@@ -1,0 +1,9 @@
+// Product entity example
+entity Product {
+  id          : Int      @primaryKey
+  name        : Text     @required  @exposed
+  description : Text                @exposed
+  price       : Decimal  @required  @exposed
+  stock       : Int      @required
+  isActive    : Boolean  @default(true)
+}

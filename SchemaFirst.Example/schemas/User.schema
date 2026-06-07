@@ -1,0 +1,11 @@
+// Example schema from the paper
+// Run: schemafirst User.schema generated/
+
+entity User {
+  id           : Int     @primaryKey
+  username     : Text    @required  @exposed
+  email        : Text    @required  @exposed
+  birthdate    : Date               @exposed
+  isActive     : Boolean @default(true)
+  passwordHash : Text    @required
+}

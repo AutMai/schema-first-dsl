@@ -1,0 +1,26 @@
+// Relations example: User, Order, Product, Tag
+// Demonstrates @manyToOne, @oneToMany, @manyToMany
+
+entity User {
+  id           : Int    @primaryKey
+  username     : Text   @required  @exposed
+  email        : Text   @required  @exposed
+  passwordHash : Text   @required
+  orders       : Order  @oneToMany            // User has many Orders
+}
+
+entity Order {
+  id       : Int     @primaryKey
+  userId   : Int     @required   @exposed     // FK column
+  user     : User    @manyToOne(userId)       // navigation (not exposed = internal only)
+  total    : Decimal @required   @exposed
+  products : Product @manyToMany @exposed     // Order <-> Product junction table
+}
+
+entity Product {
+  id          : Int     @primaryKey
+  name        : Text    @required  @exposed
+  price       : Decimal @required  @exposed
+  description : Text               @exposed
+  orders      : Order   @manyToMany           // back-reference, not exposed
+}
